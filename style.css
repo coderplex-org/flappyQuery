@@ -1,0 +1,57 @@
+html, body {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.startBtn {
+    font-size : 20px;
+    color : yellow;
+    width : 100px;
+    left : 50%;
+    margin-left : -50px;
+    background-color: red;
+    text-align: center;
+    position: absolute;
+    top : 50%;
+    height : 25px;
+    opacity : 1;
+}
+
+.gameZone {
+    height : 600px;
+    width : 100%;
+    background-color: lightgreen;
+}
+
+.score {
+    text-align: center;
+    color : green;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.bird {
+    height : 30px;
+    width : 30px;
+    position: absolute;
+    left : 30vh;
+    top : 12em;
+    background : red;
+}
+
+.gameEnd {
+    font-size : 20px;
+    color : yellow;
+    width : 200px;
+    left : 50%;
+    margin-left : -100px;
+    background-color: red;
+    text-align: center;
+    position: absolute;
+    top : 50%;
+    height : 25px;
+    display : none;
+}
