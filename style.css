@@ -1,57 +1,123 @@
 html, body {
-    cursor: pointer;
     margin: 0;
     padding: 0;
 }
 
-.startBtn {
-    font-size : 20px;
-    color : yellow;
-    width : 100px;
-    left : 50%;
-    margin-left : -50px;
-    background-color: red;
-    text-align: center;
-    position: absolute;
-    top : 50%;
-    height : 25px;
-    opacity : 1;
+body {
+    display: flex;
 }
 
+.frame {
+    background-color: antiquewhite;
+    width: 150px;
+    height: 60px;
+    font-size: 24px;
+    margin: 10px;
+
+    display: none;
+    justify-content: space-between;
+    padding: 0 10px;
+    align-items: center;
+}
+
+.button {
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.start {
+    background-color: red;
+    color : yellow;
+    height : 40px;
+    width: 100px;
+    padding : 0 10px;
+}
+
+.stop {
+    background-color: yellow;
+
+    width: 60px;
+}
+
+.restart {
+    background-color: red;
+    color : yellow;
+    height : 40px;
+    width: 100px;
+    padding : 0 10px;
+}
+
+
 .gameZone {
+    cursor: pointer;
     height : 600px;
-    width : 100%;
+    width: 500px;
     background-color: lightgreen;
+    overflow: hidden;
+    position: relative;
+    //margin : 0 auto;
+    will-change: transform;
+
+}
+
+.pipes {
+    height: 600px;
+    width: 2400px;
+    /*background-color: blue;*/
+    transform: translateX(300px);
+    display: flex;
+
+    will-change: transform;
+}
+
+.pipe {
+    /*background-color: white;*/
+    padding: 0 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*.pipe:nth-child(2n) {*/
+/*    background-color: pink;*/
+/*}*/
+
+/*.pipe:nth-child(2n+1) {*/
+/*    background-color: hotpink;*/
+/*}*/
+
+
+.pipe > div {
+    background-color: green;
 }
 
 .score {
     text-align: center;
     color : green;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+}
+
+.bird-box {
+    position: absolute;
+    top: 0;
+    left: 100px;
+    height : 600px;
+    width : 100px;
+    /*background-color: gold;*/
+    z-index: 1;
+
 }
 
 .bird {
-    height : 30px;
-    width : 30px;
-    position: absolute;
-    left : 30vh;
-    top : 12em;
+    width: 30px;
+    height: 30px;
     background : red;
-}
 
-.gameEnd {
-    font-size : 20px;
-    color : yellow;
-    width : 200px;
-    left : 50%;
-    margin-left : -100px;
-    background-color: red;
-    text-align: center;
-    position: absolute;
-    top : 50%;
-    height : 25px;
-    display : none;
+    transform: translate(35px, 0);
 }

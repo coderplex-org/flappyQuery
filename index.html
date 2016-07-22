@@ -5,24 +5,21 @@
         <link type="text/css" rel="stylesheet" href="style.css"></link>
     </head>
     <body>
-        <div class="startBtn">START</div>
 
         <div class="gameZone">
-        <h1 class="score">0</h1>
-        <div class="bird"></div>
+            <!--<div class="startBtn button">START</div>-->
+
+            <div class="bird-box"><div class="bird"></div></div>
+            <div class="pipes"></div>
+
+            <div class="stop button">STOP</div>
         </div>
 
-        <div class="gameEnd">Game Over</div>
-        <div>Frames <span class="frames">0</span></div>
-
+        <div class="start button">START</div>
+        <!--<div class="restart button">RESTART</div>-->
+        <div class="frame"><span>Frames</span> <span class="frames">0</span></div>
 
         <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
         <script type="text/javascript" src="game.js"></script>
-        <script id="__bs_script__">
-          //<![CDATA[
-          document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.13.0.js'><\/script>"
-          .replace("HOST", location.hostname));
-           //]]>  
-        </script>
     </body>
 </html>
