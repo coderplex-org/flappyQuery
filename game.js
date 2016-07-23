@@ -1,16 +1,19 @@
 'use strict';
 
 function createPipeHeight() {
-  var upperPipeHieght = Math.floor(Math.random() * 3) + 1;
-  var lowerPipeHieght = 5 - upperPipeHieght;
+  var upperPipeHeight = Math.floor(Math.random() * 3) + 1;
+  var lowerPipeHeight = 4.8 - upperPipeHeight;
 
-  return [upperPipeHieght * 100, lowerPipeHieght * 100];
+  return {
+    upper: upperPipeHeight * 100,
+    lower: lowerPipeHeight * 100
+  };
 }
 
-function createPipeHtml(pipeHieght, i) {
-  var upperPipeHtml = '<div class='+ i +' style="height: ' + pipeHieght[0] + 'px; width: 50px"></div>';
+function createPipeHtml(pipeHeight, i) {
+  var upperPipeHtml = '<div class=pipe-'+ i  + ' style="height: ' + pipeHeight.upper + 'px; width: 50px"></div>';
 
-  var lowerPipeHtml = '<div style="height: ' + pipeHieght[1] + 'px; width: 50px"></div>';
+  var lowerPipeHtml = '<div style="height: ' + pipeHeight.lower + 'px; width: 50px"></div>';
 
   //var pipeNumber = `<div class="pipeVal">${i}</div>`
 
@@ -52,16 +55,21 @@ var initialState = {
     topPipeY : 0,
     bottomPipeY : 0
   },
-  end: false
+  end: false,
+  gameInterval: undefined
 };
 
-var state = Object.assign({}, initialState);
+var state = JSON.parse(JSON.stringify(initialState));
 
 function gameStart() {
   var frame = $('.frames');
   var i = 0;
 
   function renderLoop() {
+
+    frame.text(i);
+    i += 1;
+
     if (state.bird.posY === 570 || state.bird.posY < -30 || state.end) {
       return gameEnd();
     }
@@ -76,15 +84,10 @@ function gameStart() {
 
     checkStop();
 
-    frame.text(i);
-    i += 1;
   }
 
-  setInterval(renderLoop, 16);
+  state.gameInterval = setInterval(renderLoop, 16);
 }
-
-// var tempPipe = $("." + state.nextPipe.value);
-// console.log(tempPipe[0].getBoundingClientRect().x);
 
 function moveBird() {
   state.bird.posY += state.bird.velocity;
@@ -101,14 +104,24 @@ function movePipesPlane() {
 
 
 function nextPipePos() {
-  var nextPipe = state.nextPipe;
-  var topPipe = $('.' + nextPipe.value)[0].getBoundingClientRect();
-  var pipeGap = 100;
 
-  nextPipe.leftX = topPipe.left;
-  nextPipe.rightX = topPipe.left + topPipe.width;
-  nextPipe.topPipeY = topPipe.height;
-  nextPipe.bottomPipeY = topPipe.height + pipeGap;
+  var leftPad = 100;
+  var baseLength = state.pipes.posX + leftPad;
+  var value = state.nextPipe.value;
+  var nextPipe = state.nextPipe;
+  var topPipe = $('.pipe-' + value);
+  var pipeGap = 120;
+  var spaceBetweenPipes = 200;
+
+  if(value > 0){
+    nextPipe.leftX = baseLength + (spaceBetweenPipes + topPipe.width() * value);
+  } else {
+    nextPipe.leftX = baseLength;
+  }
+  //console.log(state.bird.bottomY, state.nextPipe.value, state.nextPipe.bottomPipeY);
+  nextPipe.rightX = nextPipe.leftX + topPipe.width();
+  nextPipe.topPipeY = topPipe.height();
+  nextPipe.bottomPipeY = topPipe.height() + pipeGap;
 }
 
 function collisionCheck() {
@@ -116,16 +129,17 @@ function collisionCheck() {
   var nextPipe = state.nextPipe;
 
   if (bird.posX >= nextPipe.leftX) {
-
+    //console.log("X Meet");
     if (bird.posY <= nextPipe.topPipeY || bird.bottomY >= nextPipe.bottomPipeY) {
+      console.log("birdPosY : " + bird.posY, "topPipeY : " + nextPipe.topPipeY,
+      "birdPosBottomY : " + bird.bottomY, "bottomPipeY : " + nextPipe.bottomPipeY);
       gameEnd();
       state.end = true;
     }
-
-    if (bird.posX > nextPipe.rightX) {
+    if (bird.posX - 30 > nextPipe.rightX) {
+      $(".score").text(+1);
       updatePipe();
     }
-
   }
 }
 
@@ -134,21 +148,26 @@ function updatePipe() {
 }
 
 $(".start").click(function () {
-  $(".start").hide();
-  gameStart();
+
+  if (state.end) {
+    $(".start").hide();
+    restartGame();
+  } else {
+    $(".start").hide();
+    gameStart();
+  }
 });
 
 function gameEnd() {
   $(".gameZone").css("opacity", 0.3);
   $(".start").text("RESTART");
   $(".start").show();
+
+  clearInterval(state.gameInterval);
+  state.gameInterval = undefined;
+
   return;
 }
-
-$('.start').click(function(){
-  if(state.end)
-    restartGame();
-})
 
 function checkStop() {
   $('.stop').click(function () {
@@ -163,7 +182,7 @@ $('.gameZone').click(function () {
     state.bird.directionTimeout = undefined;
   }
 
-  state.bird.velocity = -4;
+  state.bird.velocity = -3;
 
   state.bird.directionTimeout = setTimeout(function () {
     state.bird.velocity = 2;
@@ -171,9 +190,14 @@ $('.gameZone').click(function () {
 });
 
 function restartGame() {
-  //console.log("restart");
-  state = Object.assign({}, initialState);
+  state = JSON.parse(JSON.stringify(initialState));
+
+
   $(".gameZone").css("opacity", 1);
   $(".bird").css({transform : "translateY(0)"});
+  $('.pipes').css({ transform: 'translateX(300px)' });
+
+  $(".score").text(0);
+
   gameStart();
 }

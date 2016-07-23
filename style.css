@@ -21,10 +21,11 @@ body {
 }
 
 .button {
-    height: 60px;
+    height: 40px;
     font-size: 24px;
     cursor: pointer;
     margin: 10px;
+    padding : 0 10px;
 
     display: flex;
     justify-content: center;
@@ -35,23 +36,14 @@ body {
 .start {
     background-color: red;
     color : yellow;
-    height : 40px;
     width: 100px;
-    padding : 0 10px;
 }
 
 .stop {
+    /*display : none;*/
     background-color: yellow;
-
+    color : red;
     width: 60px;
-}
-
-.restart {
-    background-color: red;
-    color : yellow;
-    height : 40px;
-    width: 100px;
-    padding : 0 10px;
 }
 
 
@@ -62,7 +54,7 @@ body {
     background-color: lightgreen;
     overflow: hidden;
     position: relative;
-    //margin : 0 auto;
+    margin : 0 auto;
     will-change: transform;
 
 }
@@ -114,6 +106,13 @@ body {
 
 }
 
+.scoreText {
+    text-align: center;
+    color : green;
+    font-size : 40px;
+}
+
+
 .bird {
     width: 30px;
     height: 30px;
@@ -121,3 +120,32 @@ body {
 
     transform: translate(35px, 0);
 }
+
+/*.height-100 {
+    height: 100px;
+    width: 50px;
+}
+
+
+.height-200 {
+    height: 200px;
+    width: 50px;
+}
+
+
+.height-300 {
+    height: 300px;
+    width: 50px;
+}
+
+
+.height-400 {
+    height: 400px;
+    width: 50px;
+}
+
+
+.height-500 {
+    height: 500px;
+    width: 50px;
+}*/
