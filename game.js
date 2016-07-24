@@ -4,7 +4,7 @@ var heightObj = {};
 
 function createPipeHeight() {
   var upperPipeHeight = Math.floor(Math.random() * 3) + 1;
-  var lowerPipeHeight = 4.8 - upperPipeHeight;
+  var lowerPipeHeight = 4.9 - upperPipeHeight;
 
   return {
     upper: upperPipeHeight * 100,
@@ -86,7 +86,6 @@ function gameStart() {
     collisionCheck();
 
     checkStop();
-
   }
 
   state.gameInterval = setInterval(renderLoop, 16);
@@ -115,13 +114,13 @@ function nextPipePos() {
   var nextPipe = state.nextPipe;
   var nextPipeHeight = heightObj[value];
   //var topPipe = $('.pipe-' + value);
-  var pipeGap = 120;
+  var pipeGap = 110;
   var spaceBetweenPipes = 200;
 
   //console.log(nextPipeHeight);
 
   if(value > 0){
-    nextPipe.leftX = baseLength + (pipeWidth + spaceBetweenPipes * value);
+    nextPipe.leftX = baseLength + (pipeWidth + spaceBetweenPipes) * value;
   } else {
     nextPipe.leftX = baseLength;
   }
@@ -138,13 +137,14 @@ function collisionCheck() {
   if (bird.posX >= nextPipe.leftX) {
     //console.log("X Meet");
     if (bird.posY <= nextPipe.topPipeY || bird.bottomY >= nextPipe.bottomPipeY) {
-      // console.log("birdPosY : " + bird.posY, "topPipeY : " + nextPipe.topPipeY,
+      // console.log("birdPosX : " + bird.posX, "pipeLeftX : " + nextPipe.leftX,   "birdPosY : " + bird.posY, "topPipeY : " + nextPipe.topPipeY,
       // "birdPosBottomY : " + bird.bottomY, "bottomPipeY : " + nextPipe.bottomPipeY);
+      // console.log(document.querySelector(".pipe-" + state.nextPipe.value).getBoundingClientRect())
       gameEnd();
       state.end = true;
     }
     if (bird.posX - 30 > nextPipe.rightX) {
-      $(".score").text(+1);
+      $(".score").text(state.nextPipe.value + 1);
       updatePipe();
       //nextPipePos();
     }
