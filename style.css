@@ -33,14 +33,24 @@ body {
 
 }
 
+.startBtn {
+  height : 100px;
+  position: absolute;
+  top : 50%;
+  margin-top : -50px;
+  width : 100%;
+  margin-left : -100%;
+}
+
 .start {
     background-color: red;
     color : yellow;
     width: 100px;
+    margin : 0 auto;
 }
 
 .stop {
-    /*display : none;*/
+    display : none;
     background-color: yellow;
     color : red;
     width: 60px;
@@ -55,8 +65,13 @@ body {
     overflow: hidden;
     position: relative;
     margin : 0 auto;
+    top : 20px;
+    //margin-top : -50px;
     will-change: transform;
-
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .pipes {
@@ -87,12 +102,26 @@ body {
 
 
 .pipe > div {
-    background-color: green;
+    background-color: #00BB27;
+}
+
+.score-box  {
+  position: absolute;
+  top: 0;
+  left: 250px;
+  height : 600px;
+  width : 100px;
+  /*background-color: gold;*/
+  z-index: 1;
 }
 
 .score {
     text-align: center;
-    color : green;
+    color : #11772D;
+    font-size : 3em;
+    //margin : 0 auto;
+    //display : flex;
+    transform: translate(250px, 0);
 }
 
 .bird-box {
@@ -106,13 +135,6 @@ body {
 
 }
 
-.scoreText {
-    text-align: center;
-    color : green;
-    font-size : 40px;
-}
-
-
 .bird {
     width: 30px;
     height: 30px;
@@ -120,32 +142,3 @@ body {
 
     transform: translate(35px, 0);
 }
-
-/*.height-100 {
-    height: 100px;
-    width: 50px;
-}
-
-
-.height-200 {
-    height: 200px;
-    width: 50px;
-}
-
-
-.height-300 {
-    height: 300px;
-    width: 50px;
-}
-
-
-.height-400 {
-    height: 400px;
-    width: 50px;
-}
-
-
-.height-500 {
-    height: 500px;
-    width: 50px;
-}*/
