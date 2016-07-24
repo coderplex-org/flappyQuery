@@ -1,5 +1,7 @@
 'use strict';
 
+var heightObj = {};
+
 function createPipeHeight() {
   var upperPipeHeight = Math.floor(Math.random() * 3) + 1;
   var lowerPipeHeight = 4.8 - upperPipeHeight;
@@ -16,6 +18,7 @@ function createPipeHtml(pipeHeight, i) {
   var lowerPipeHtml = '<div style="height: ' + pipeHeight.lower + 'px; width: 50px"></div>';
 
   //var pipeNumber = `<div class="pipeVal">${i}</div>`
+  heightObj[i] = pipeHeight.upper;
 
   var pipeHtml = '<div class="pipe">' + upperPipeHtml + lowerPipeHtml + '</div>';
 
@@ -66,9 +69,9 @@ function gameStart() {
   var i = 0;
 
   function renderLoop() {
-
     frame.text(i);
     i += 1;
+
 
     if (state.bird.posY === 570 || state.bird.posY < -30 || state.end) {
       return gameEnd();
@@ -108,20 +111,24 @@ function nextPipePos() {
   var leftPad = 100;
   var baseLength = state.pipes.posX + leftPad;
   var value = state.nextPipe.value;
+  var pipeWidth = 50;
   var nextPipe = state.nextPipe;
-  var topPipe = $('.pipe-' + value);
+  var nextPipeHeight = heightObj[value];
+  //var topPipe = $('.pipe-' + value);
   var pipeGap = 120;
   var spaceBetweenPipes = 200;
 
+  //console.log(nextPipeHeight);
+
   if(value > 0){
-    nextPipe.leftX = baseLength + (spaceBetweenPipes + topPipe.width() * value);
+    nextPipe.leftX = baseLength + (pipeWidth + spaceBetweenPipes * value);
   } else {
     nextPipe.leftX = baseLength;
   }
   //console.log(state.bird.bottomY, state.nextPipe.value, state.nextPipe.bottomPipeY);
-  nextPipe.rightX = nextPipe.leftX + topPipe.width();
-  nextPipe.topPipeY = topPipe.height();
-  nextPipe.bottomPipeY = topPipe.height() + pipeGap;
+  nextPipe.rightX = nextPipe.leftX + pipeWidth;
+  nextPipe.topPipeY = nextPipeHeight;
+  nextPipe.bottomPipeY = nextPipeHeight + pipeGap;
 }
 
 function collisionCheck() {
@@ -131,14 +138,15 @@ function collisionCheck() {
   if (bird.posX >= nextPipe.leftX) {
     //console.log("X Meet");
     if (bird.posY <= nextPipe.topPipeY || bird.bottomY >= nextPipe.bottomPipeY) {
-      console.log("birdPosY : " + bird.posY, "topPipeY : " + nextPipe.topPipeY,
-      "birdPosBottomY : " + bird.bottomY, "bottomPipeY : " + nextPipe.bottomPipeY);
+      // console.log("birdPosY : " + bird.posY, "topPipeY : " + nextPipe.topPipeY,
+      // "birdPosBottomY : " + bird.bottomY, "bottomPipeY : " + nextPipe.bottomPipeY);
       gameEnd();
       state.end = true;
     }
     if (bird.posX - 30 > nextPipe.rightX) {
       $(".score").text(+1);
       updatePipe();
+      //nextPipePos();
     }
   }
 }
@@ -201,3 +209,5 @@ function restartGame() {
 
   gameStart();
 }
+
+//console.log(heightObj);
