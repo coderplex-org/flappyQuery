@@ -26,6 +26,7 @@ body {
     cursor: pointer;
     margin: 10px;
     padding : 0 10px;
+    border: 2px solid black;
 
     display: flex;
     justify-content: center;
@@ -36,18 +37,13 @@ body {
 .startBtn {
   height : 100px;
   position: absolute;
-  top : 50%;
+  top : 95%;
   margin-top : -50px;
   width : 100%;
   margin-left : -100%;
 }
 
-.start {
-    background-color: red;
-    color : yellow;
-    width: 100px;
-    margin : 0 auto;
-}
+
 
 .stop {
     display : none;
@@ -72,6 +68,13 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.start {
+    background-color: red;
+    color : yellow;
+    width: 100px;
+    margin : 0 auto;
 }
 
 .pipes {
