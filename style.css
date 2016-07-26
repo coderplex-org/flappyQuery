@@ -26,6 +26,7 @@ body {
     cursor: pointer;
     margin: 10px;
     padding : 0 10px;
+    border: 2px solid black;
 
     display: flex;
     justify-content: center;
@@ -33,11 +34,6 @@ body {
 
 }
 
-.start {
-    background-color: red;
-    color : yellow;
-    width: 100px;
-}
 
 .stop {
     /*display : none;*/
@@ -58,6 +54,15 @@ body {
     will-change: transform;
 
 }
+
+
+.start {
+    background-color: red;
+    color : yellow;
+    width: 100px;
+
+}
+
 
 .pipes {
     height: 600px;
