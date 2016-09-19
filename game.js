@@ -158,10 +158,10 @@ function updatePipe() {
 $(".start").click(function () {
 
   if (state.end) {
-    $(".startBtn").css("display", "none");
+    $(".start").css("display", "none");
     restartGame();
   } else {
-    $(".startBtn").css("display", "none");
+    $(".start").css("display", "none");
     gameStart();
   }
 });
@@ -169,7 +169,7 @@ $(".start").click(function () {
 function gameEnd() {
   $(".gameZone").css("opacity", 0.3);
   $(".start").text("RESTART");
-  $(".startBtn").css("display", "inline");
+  $(".start").css("display", "inline-flex");
 
   clearInterval(state.gameInterval);
   state.gameInterval = undefined;
