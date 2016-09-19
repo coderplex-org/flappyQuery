@@ -3,7 +3,6 @@ html, body {
     padding: 0;
     font-family: sans-serif;
 }
-
 h2 {
     padding: 0;
     margin: 0 auto;
@@ -61,52 +60,34 @@ h2 {
     position: relative;
     margin : 0 auto;
     top : 10px;
-    /*margin-top : -50px;*/
     will-change: transform;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
-
 .pipes {
     height: 600px;
     width: 2400px;
-    /*background-color: blue;*/
     transform: translateX(300px);
     display: flex;
-
     will-change: transform;
 }
-
 .pipe {
-    /*background-color: white;*/
     padding: 0 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-
-/*.pipe:nth-child(2n) {*/
-/*    background-color: pink;*/
-/*}*/
-
-/*.pipe:nth-child(2n+1) {*/
-/*    background-color: hotpink;*/
-/*}*/
-
-
 .pipe > div {
     background-color: #00BB27;
 }
-
 .score-box  {
   position: absolute;
   top: 0;
   left: 250px;
   height : 600px;
   width : 100px;
-  /*background-color: gold;*/
   z-index: 1;
 }
 
@@ -124,15 +105,12 @@ h2 {
     left: 100px;
     height : 600px;
     width : 100px;
-    /*background-color: gold;*/
     z-index: 1;
-
 }
 
 .bird {
     width: 30px;
     height: 30px;
     background : red;
-
     transform: translate(35px, 0);
 }
