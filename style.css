@@ -1,10 +1,16 @@
 html, body {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 
-body {
-    display: flex;
+h2 {
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 5px;
+    color: #666;
+    font-family: sans-serif;
 }
 
 .frame {
@@ -13,33 +19,10 @@ body {
     height: 60px;
     font-size: 24px;
     margin: 10px;
-
     display: none;
     justify-content: space-between;
     padding: 0 10px;
     align-items: center;
-}
-
-.button {
-    height: 40px;
-    font-size: 24px;
-    cursor: pointer;
-    margin: 10px;
-    padding : 0 10px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.startBtn {
-  height : 100px;
-  position: absolute;
-  top : 50%;
-  margin-top : -50px;
-  width : 100%;
-  margin-left : -100%;
 }
 
 .start {
@@ -47,6 +30,20 @@ body {
     color : yellow;
     width: 100px;
     margin : 0 auto;
+    z-index: 2;
+}
+
+.button {
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    padding : 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin-top: -23%;
+    margin-left:46%;
 }
 
 .stop {
@@ -56,7 +53,6 @@ body {
     width: 60px;
 }
 
-
 .gameZone {
     cursor: pointer;
     height : 600px;
@@ -65,8 +61,7 @@ body {
     overflow: hidden;
     position: relative;
     margin : 0 auto;
-    top : 20px;
-    //margin-top : -50px;
+    top : 10px;
     will-change: transform;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -77,29 +72,17 @@ body {
 .pipes {
     height: 600px;
     width: 2400px;
-    /*background-color: blue;*/
     transform: translateX(300px);
     display: flex;
-
     will-change: transform;
 }
 
 .pipe {
-    /*background-color: white;*/
     padding: 0 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-
-/*.pipe:nth-child(2n) {*/
-/*    background-color: pink;*/
-/*}*/
-
-/*.pipe:nth-child(2n+1) {*/
-/*    background-color: hotpink;*/
-/*}*/
-
 
 .pipe > div {
     background-color: #00BB27;
@@ -111,7 +94,6 @@ body {
   left: 250px;
   height : 600px;
   width : 100px;
-  /*background-color: gold;*/
   z-index: 1;
 }
 
@@ -119,8 +101,7 @@ body {
     text-align: center;
     color : #11772D;
     font-size : 3em;
-    //margin : 0 auto;
-    //display : flex;
+    margin-left: -15%;
     transform: translate(250px, 0);
 }
 
@@ -130,15 +111,12 @@ body {
     left: 100px;
     height : 600px;
     width : 100px;
-    /*background-color: gold;*/
     z-index: 1;
-
 }
 
 .bird {
     width: 30px;
     height: 30px;
     background : red;
-
     transform: translate(35px, 0);
 }
